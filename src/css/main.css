@@ -1,0 +1,522 @@
+/* ============================================================
+   BAILEY TERMINALS — design tokens
+   Palette pulled from the rail yard itself: slate steel, weathered
+   concrete, corten rust, and signal-block green (the lamp that means
+   "clear to proceed" — i.e. capacity is open).
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --slate:        #1C2630;   /* base dark — undercarriage steel */
+  --slate-soft:   #2C3944;   /* raised panels on dark */
+  --concrete:     #EDEBE3;   /* light background — weathered dock concrete */
+  --concrete-dim: #E1DED3;   /* recessed panels on light */
+  --steel-line:   #4A5560;   /* iron gray — rules, muted text */
+  --signal-green: #2F7A52;   /* "clear" block signal — primary accent */
+  --signal-green-deep: #1F5B3B;
+  --corten:       #A34A28;   /* rusted corten steel — secondary accent */
+  --paper:        #F7F6F1;
+  --ink:          #1C2630;
+  --ink-soft:     #47525C;
+
+  --font-display: 'Oswald', sans-serif;
+  --font-body:    'Public Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --max-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  margin: 0 0 0.5em;
+  color: var(--slate);
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 700; letter-spacing: 0.01em; line-height: 1.02; }
+h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+h3 { font-size: 1.2rem; letter-spacing: 0.04em; }
+
+p { margin: 0 0 1.1em; color: var(--ink-soft); max-width: 62ch; }
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal-green-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--corten);
+  display: inline-block;
+}
+
+/* ============================================================
+   SIGNATURE ELEMENT: the siding diagram
+   A literal rail-siding / spot-track graphic used as a structural
+   device throughout — because "spots" (railcar positions) are the
+   actual product Bailey Terminals sells. Ticks = spots. Filled tick
+   = leased/occupied in an example read, open tick = available.
+   Also doubles as a section divider so it does real navigational work.
+   ============================================================ */
+
+.siding {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 34px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.siding .rail {
+  flex: 1;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--steel-line) 0,
+    var(--steel-line) 10px,
+    transparent 10px,
+    transparent 16px
+  );
+  position: relative;
+}
+
+.siding .rail::before,
+.siding .rail::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--steel-line);
+  opacity: 0.4;
+}
+.siding .rail::before { top: -6px; }
+.siding .rail::after { top: 6px; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+
+.site-header {
+  background: var(--slate);
+  color: var(--concrete);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 3px solid var(--corten);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: var(--concrete);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand .mark {
+  color: var(--signal-green);
+}
+
+nav.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav.main-nav a {
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--concrete);
+  opacity: 0.78;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+nav.main-nav a:hover,
+nav.main-nav a[aria-current="page"] {
+  opacity: 1;
+  border-bottom-color: var(--signal-green);
+}
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--signal-green);
+  color: var(--paper);
+  padding: 9px 18px;
+  text-decoration: none;
+  border: none;
+  transition: background 0.15s ease;
+}
+.nav-cta:hover { background: var(--signal-green-deep); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+  background: var(--slate);
+  color: var(--concrete);
+  padding: 88px 0 0;
+  position: relative;
+}
+
+.hero .wrap { padding-bottom: 60px; }
+
+.hero h1 { color: var(--paper); max-width: 14ch; }
+
+.hero .lede {
+  color: #C7CDD2;
+  font-size: 1.15rem;
+  max-width: 52ch;
+  margin-top: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 14px 26px;
+  display: inline-block;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--signal-green);
+  color: var(--paper);
+}
+.btn-primary:hover { background: var(--signal-green-deep); }
+
+.btn-ghost {
+  border-color: rgba(237, 235, 227, 0.35);
+  color: var(--concrete);
+}
+.btn-ghost:hover { border-color: var(--concrete); }
+
+/* for use on light backgrounds, where btn-ghost's light-colored border/text disappears */
+.btn-outline {
+  border-color: var(--slate);
+  color: var(--slate);
+}
+.btn-outline:hover { background: var(--slate); color: var(--paper); }
+
+.hero .siding { border-top: 1px solid rgba(237,235,227,0.15); }
+.hero .siding .rail { opacity: 0.5; }
+
+/* capacity strip: real numbers rendered as occupied/open spots on the siding motif */
+.capacity-strip {
+  background: var(--slate-soft);
+  padding: 22px 0;
+}
+
+.capacity-strip .wrap {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.capacity-stat .num {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  color: var(--signal-green);
+  font-weight: 700;
+}
+
+.capacity-stat .label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9AA4AC;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+section { padding: 76px 0; }
+section.tight { padding: 52px 0; }
+
+.section-light { background: var(--paper); }
+.section-dim   { background: var(--concrete-dim); }
+.section-dark  { background: var(--slate); color: var(--concrete); }
+.section-dark h2, .section-dark h3 { color: var(--paper); }
+.section-dark p { color: #C7CDD2; }
+
+.grid {
+  display: grid;
+  gap: 28px;
+}
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 860px) {
+  .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  nav.main-nav { display: none; }
+  .capacity-strip .wrap { gap: 26px; }
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--concrete-dim);
+  border-top: 3px solid var(--corten);
+  padding: 30px 26px;
+}
+
+.card h3 { margin-bottom: 10px; }
+.card .tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal-green-deep);
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* location cards */
+.loc-card {
+  background: var(--paper);
+  border: 1px solid var(--concrete-dim);
+  padding: 0;
+  overflow: hidden;
+}
+.loc-card .loc-head {
+  background: var(--slate);
+  color: var(--paper);
+  padding: 22px 26px;
+}
+.loc-card .loc-head .eyebrow { color: var(--signal-green); }
+.loc-card .loc-body { padding: 26px; }
+
+.spec-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+}
+.spec-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--concrete-dim);
+  color: var(--ink-soft);
+}
+.spec-list li span:last-child {
+  color: var(--slate);
+  font-weight: 500;
+}
+
+/* ============================================================
+   SITE BLURB CARDS (home page network overview)
+   ============================================================ */
+
+.site-blurb {
+  background: var(--paper);
+  border: 1px solid var(--concrete-dim);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+.site-blurb:hover { border-color: var(--signal-green); }
+
+.site-blurb .img-wrap {
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  border-bottom: 3px solid var(--corten);
+}
+.site-blurb .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.site-blurb .blurb-body { padding: 26px; }
+
+.site-blurb .blurb-specs {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 14px 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+}
+.site-blurb .blurb-specs span { white-space: nowrap; }
+.site-blurb .blurb-specs strong { color: var(--slate); }
+
+.site-blurb .view-link {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--signal-green-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.site-blurb:hover .view-link { color: var(--signal-green-deep); text-decoration: underline; }
+
+/* ============================================================
+   SITE DETAIL PAGE HERO IMAGE
+   ============================================================ */
+
+.site-hero-img {
+  aspect-ratio: 16 / 6;
+  overflow: hidden;
+  border-top: 3px solid var(--corten);
+  border-bottom: 1px solid var(--concrete-dim);
+}
+.site-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer.site-footer {
+  background: var(--slate);
+  color: #9AA4AC;
+  padding: 50px 0 30px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+footer.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer.site-footer a { color: #C7CDD2; text-decoration: none; }
+footer.site-footer a:hover { color: var(--signal-green); }
+
+/* ============================================================
+   FORM (contact page — Netlify Forms)
+   ============================================================ */
+
+form.contact-form {
+  display: grid;
+  gap: 18px;
+  max-width: 560px;
+}
+
+form.contact-form label {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 6px;
+}
+
+form.contact-form input,
+form.contact-form select,
+form.contact-form textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1px solid var(--steel-line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+form.contact-form textarea { min-height: 130px; resize: vertical; }
+
+form.contact-form button {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  background: var(--signal-green);
+  color: var(--paper);
+  border: none;
+  padding: 15px 26px;
+  cursor: pointer;
+  justify-self: start;
+}
+form.contact-form button:hover { background: var(--signal-green-deep); }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--signal-green);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

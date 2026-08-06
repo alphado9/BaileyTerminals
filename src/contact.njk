@@ -1,0 +1,85 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Request capacity at Bailey Terminals — Cartersville, GA or Memphis, TN.
+permalink: /contact/
+---
+
+<section class="hero" style="padding-bottom:50px;">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h1 style="max-width:16ch;">Tell us what needs a home.</h1>
+    <p class="lede">Commodity, volume, timeline — the more specific, the faster we can tell you what we've got open.</p>
+  </div>
+  <div class="siding"><div class="rail"></div></div>
+</section>
+
+<section class="section-light">
+  <div class="wrap">
+    <div class="grid grid-2">
+      <div>
+        <form name="capacity-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+          <input type="hidden" name="form-name" value="capacity-request" />
+          <p class="hidden" style="display:none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div>
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" required>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div>
+            <label for="service">What do you need?</label>
+            <select id="service" name="service">
+              <option>Metals warehousing</option>
+              <option>Railcar storage</option>
+              <option>Bulk material storage / transloading</option>
+              <option>Toll processing / packaging</option>
+              <option>Project cargo</option>
+              <option>Not sure — let's talk</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="location">Preferred site</label>
+            <select id="location" name="location">
+              <option>Cartersville, GA</option>
+              <option>Memphis, TN</option>
+              <option>Either / not sure</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message">Details</label>
+            <textarea id="message" name="message" placeholder="Commodity, volume, timeline..."></textarea>
+          </div>
+
+          <button type="submit">Send request</button>
+        </form>
+      </div>
+
+      <div>
+        <h3>Prefer to just call?</h3>
+        <p class="mono" style="color:var(--ink-soft);">Cartersville, GA<br>[phone / email]</p>
+        <p class="mono" style="color:var(--ink-soft); margin-top:20px;">Memphis, TN<br>[phone / email]</p>
+        <p style="margin-top:26px;">We typically reply within one business day with real availability — not a form letter.</p>
+      </div>
+    </div>
+  </div>
+</section>

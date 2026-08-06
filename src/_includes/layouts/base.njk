@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — Bailey Terminals</title>
+  <meta name="description" content="{{ description }}">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="brand"><span class="mark">▮▮</span> Bailey Terminals</a>
+      <nav class="main-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/cartersville/" {% if page.url == '/cartersville/' %}aria-current="page"{% endif %}>Cartersville, GA</a></li>
+          <li><a href="/memphis/" {% if page.url == '/memphis/' %}aria-current="page"{% endif %}>Memphis, TN</a></li>
+          <li><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>About</a></li>
+          <li><a href="/contact/" class="nav-cta">Request Capacity</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <div class="brand" style="margin-bottom:10px;"><span class="mark">▮▮</span> Bailey Terminals</div>
+        <p style="color:#8A949C; max-width:36ch; margin:0;">Rail-served warehousing and terminal services in Cartersville, GA and Memphis, TN.</p>
+      </div>
+      <div>
+        <div>Cartersville, GA &nbsp;•&nbsp; Memphis, TN</div>
+        <div style="margin-top:6px;"><a href="/contact/">Request capacity →</a></div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

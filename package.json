@@ -1,0 +1,12 @@
+{
+  "name": "baileyterminals",
+  "version": "1.0.0",
+  "description": "Bailey Terminals site — rail-served warehousing and terminal services",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
